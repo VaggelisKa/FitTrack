@@ -44,6 +44,14 @@
             required>
         </mat-form-field>
 
+        <mat-form-field>
+            <mat-label>Choose Date</mat-label>
+            <input matInput [matDatepicker]="dp" [ngModel]="date">
+            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+            <mat-datepicker #dp></mat-datepicker>
+        </mat-form-field>
+          
+
         <button 
         type="submit" 
         mat-raised-button color="primary"

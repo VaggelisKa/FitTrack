@@ -1,15 +1,48 @@
 <section class="signup-form">
-   <form fxLayout="column" fxLayoutAlign="center center">
+   <form 
+   fxLayout="column" 
+   fxLayoutAlign="center center"
+   #signupForm="ngForm"
+   (ngSubmit)="onSubmit(signupForm)">
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
-          <input  matInput type FloatLabelType = 'always'>
-          <mat-hint>Hint</mat-hint>
+          <input  
+          matInput 
+          type FloatLabelType = 'always' 
+          ngModel
+          name="email"
+          type="email"
+          required>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Password</mat-label>
-            <input  matInput type FloatLabelType = 'always'>
-            <mat-hint>Hint</mat-hint>
-          </mat-form-field>
+            <input  
+            matInput 
+            type FloatLabelType = 'always'
+            ngModel
+            name="password"
+            type="password"
+            minlength="8"
+            required>
+            <mat-hint>Minimum length 8</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Confirm Password</mat-label>
+            <input  
+            matInput 
+            type FloatLabelType = 'always'
+            ngModel
+            name="confirmPassword"
+            type="password"
+            required>
+        </mat-form-field>
+
+        <button 
+        type="submit" 
+        mat-raised-button color="primary"
+        (click)="onSubmit()"
+        [disabled]="!signupForm.valid">Submit</button>
    </form> 
 </section>

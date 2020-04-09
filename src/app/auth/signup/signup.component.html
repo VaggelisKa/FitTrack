@@ -1,60 +1,62 @@
-<section class="signup-form">
-   <form 
-   fxLayout="column" 
-   fxLayoutAlign="center center"
-   #signupForm="ngForm"
-   (ngSubmit)="onSubmit(signupForm)">
-        <mat-form-field appearance="outline">
-          <mat-label>Email</mat-label>
-          <input  
-          matInput 
-          type FloatLabelType = 'always' 
-          ngModel
-          name="email"
-          email
-          required
-          #emailInput="ngModel">
-          <mat-error *ngIf="!emailInput.hasError('required')">Email is invalid</mat-error>
-          <mat-error *ngIf="emailInput.hasError('required')">Field must not be empty</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-            <mat-label>Password</mat-label>
-            <input  
-            matInput 
-            type FloatLabelType = 'always'
-            ngModel
-            name="password"
-            type="password"
-            minlength="8"
-            required
-            #pwInput="ngModel">
-            <mat-hint>Minimum length 8</mat-hint>
-            <mat-hint align="end">{{ pwInput.value?.length }} /8</mat-hint>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-            <mat-label>Confirm Password</mat-label>
-            <input  
-            matInput 
-            type FloatLabelType = 'always'
-            ngModel
-            name="confirmPassword"
-            type="password"
-            required>
-        </mat-form-field>
-
-        <mat-form-field>
-            <mat-label>Choose Date</mat-label>
-            <input matInput [matDatepicker]="dp" [ngModel]="date">
-            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-            <mat-datepicker #dp></mat-datepicker>
-        </mat-form-field>
-          
-
-        <button 
-        type="submit" 
-        mat-raised-button color="primary"
-        [disabled]="!signupForm.valid">Submit</button>
-   </form> 
-</section>
+<div class="BackImage">
+    <section class="signup-form">
+        <form 
+        fxLayout="column" 
+        fxLayoutAlign="center center"
+        #signupForm="ngForm"
+        (ngSubmit)="onSubmit(signupForm)">
+                <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input  
+                matInput 
+                type FloatLabelType = 'always' 
+                ngModel
+                name="email"
+                email
+                required
+                #emailInput="ngModel">
+                <mat-error *ngIf="!emailInput.hasError('required')">Email is invalid</mat-error>
+                <mat-error *ngIf="emailInput.hasError('required')">Field must not be empty</mat-error>
+                </mat-form-field>
+        
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input  
+                    matInput 
+                    type FloatLabelType = 'always'
+                    ngModel
+                    name="password"
+                    type="password"
+                    minlength="8"
+                    required
+                    #pwInput="ngModel">
+                    <mat-hint>Minimum length 8</mat-hint>
+                    <mat-hint align="end">{{ pwInput.value?.length }} /8</mat-hint>
+                </mat-form-field>
+        
+                <mat-form-field appearance="outline">
+                    <mat-label>Confirm Password</mat-label>
+                    <input  
+                    matInput 
+                    type FloatLabelType = 'always'
+                    ngModel
+                    name="confirmPassword"
+                    type="password"
+                    required>
+                </mat-form-field>
+        
+                <mat-form-field>
+                    <mat-label>Choose Date</mat-label>
+                    <input matInput [matDatepicker]="dp" [ngModel]="date">
+                    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                    <mat-datepicker #dp></mat-datepicker>
+                </mat-form-field>
+                
+        
+                <button 
+                type="submit" 
+                mat-raised-button color="primary"
+                [disabled]="!signupForm.valid">Submit</button>
+        </form> 
+    </section>
+</div>

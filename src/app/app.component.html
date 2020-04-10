@@ -1,5 +1,5 @@
-<mat-sidenav-container class="example-container">
-    <mat-sidenav #sidenav [opened]="isSidenavOpen">
+<mat-sidenav-container  class="example-container">
+    <mat-sidenav mode="over" #sidenav [opened]="isSidenavOpen">
         <app-sidenav-list (close)="sidenav.close()"></app-sidenav-list>
     </mat-sidenav>
     <mat-sidenav-content>

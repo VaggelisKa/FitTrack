@@ -9,11 +9,6 @@ a {
     color: white;
 }
 
-.navigation-items {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
 
 .nav-caption {
     display: inline-block;

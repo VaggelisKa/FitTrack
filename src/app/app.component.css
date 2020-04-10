@@ -21,3 +21,22 @@ a:active {
     padding: 0;
     margin: 0;
 }
+
+.logo {
+    text-shadow: rgb(136, 16, 64) 0px 0px 0px,
+                 rgb(141, 17, 66) 1px 1px 0px,
+                 rgb(146, 17, 69) 2px 2px 0px, 
+                 rgb(152, 18, 71) 3px 3px 0px, 
+                 rgb(157, 19, 74) 4px 4px 0px, 
+                 rgb(162, 19, 76) 5px 5px 0px, 
+                 rgb(168, 20, 79) 6px 6px 0px, 
+                 rgb(173, 20, 81) 7px 7px 0px, 
+                 rgb(178, 21, 84) 8px 8px 0px, 
+                 rgb(183, 22, 86) 9px 9px 0px, 
+                 rgb(189, 22, 89) 10px 10px 0px; 
+}
+
+.nav-caption {
+    display: inline-block;
+    padding-left: 5px;
+}

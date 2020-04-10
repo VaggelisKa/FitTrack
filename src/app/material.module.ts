@@ -5,7 +5,9 @@ import {
     MatInputModule,
     MatIconModule,
     MatDatepickerModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSidenavModule,
+    MatToolbarModule
     } from '@angular/material';
 
 
@@ -39,7 +41,9 @@ export const MY_FORMATS = {
         MatInputModule,
         MatIconModule,
         MatDatepickerModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MatSidenavModule,
+        MatToolbarModule
     ],
     exports: [
         MatButtonModule,
@@ -48,7 +52,9 @@ export const MY_FORMATS = {
         MatIconModule,
         MatDatepickerModule,
         MatMomentDateModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MatSidenavModule,
+        MatToolbarModule
     ],
 
     providers: [

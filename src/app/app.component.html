@@ -1,1 +1,19 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container class="example-container">
+    <mat-sidenav mode="side" [opened]="isSidenavOpen">Sidenav content</mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <div><button (click)="controlSidenav()">
+                <mat-icon _ngcontent-lti-c63="" role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true">menu</mat-icon>
+            </button></div>
+            <div>LOGO</div>
+            <div>
+                <a routerLink="/signup">Signup</a>
+                <a routerLink="/login">login</a>
+                <a routerLink="/training">Training</a>
+            </div>
+        </mat-toolbar>
+        <main>
+            <router-outlet></router-outlet>
+        </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

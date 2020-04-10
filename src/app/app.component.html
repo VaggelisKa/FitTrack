@@ -2,14 +2,24 @@
     <mat-sidenav mode="side" [opened]="isSidenavOpen">Sidenav content</mat-sidenav>
     <mat-sidenav-content>
         <mat-toolbar color="primary">
-            <div><button (click)="controlSidenav()">
-                <mat-icon _ngcontent-lti-c63="" role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true">menu</mat-icon>
-            </button></div>
-            <div>LOGO</div>
             <div>
-                <a routerLink="/signup">Signup</a>
-                <a routerLink="/login">login</a>
-                <a routerLink="/training">Training</a>
+                <button (click)="controlSidenav()" mat-icon-button>
+                    <mat-icon>menu</mat-icon>
+                </button>
+            </div>
+            <div>LOGO</div>
+            <div fxFlex fxLayout fxLayoutAlign="flex-end">
+                <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+                    <li>
+                        <a routerLink="/signup">Signup</a>
+                    </li>
+                    <li>
+                        <a routerLink="/login">Login</a>
+                    </li>
+                    <li>
+                        <a routerLink="/training">Training</a>
+                    </li>
+                </ul>   
             </div>
         </mat-toolbar>
         <main>

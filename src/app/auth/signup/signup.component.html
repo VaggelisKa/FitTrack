@@ -3,6 +3,7 @@
         <form 
         fxLayout="column" 
         fxLayoutAlign="center center"
+        fxLayoutGap="13px"
         #signupForm="ngForm"
         (ngSubmit)="onSubmit(signupForm)">
                 <mat-form-field appearance="outline">
@@ -54,13 +55,23 @@
                         matInput 
                         [matDatepicker]="dp" 
                         [ngModel]="date"
+                        name="date"
                         [max]="maxDate"
+                        required
                     >
                     <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
                     <mat-datepicker #dp></mat-datepicker>
+                    <mat-hint>Set for 18 years old</mat-hint>
                 </mat-form-field>
-                
-        
+
+                    <mat-checkbox
+                        class="checkbox" 
+                        ngModel
+                        name="agree"
+                        required
+                        color="primary"
+                    >Agree with terms and conditions.</mat-checkbox>
+                        
                 <button 
                     type="submit" 
                     mat-raised-button color="primary"

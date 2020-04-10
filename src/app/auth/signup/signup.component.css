@@ -18,7 +18,7 @@
 
 .signup-form {
     background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0, 0.5); 
+    background-color: rgba(0,0,0, 0.6); 
     opacity: 1;
     height: 100%;
     width: 100%;
@@ -27,5 +27,8 @@
 
 mat-form-field {
     width: 300px;
-    padding: 5px;
+}
+
+.checkbox {
+    font-size: 12px;
 }

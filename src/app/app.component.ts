@@ -6,9 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  isSidenavOpen = false;
-
-  controlSidenav() {
-    this.isSidenavOpen = !this.isSidenavOpen;
-  }
+  isSidenavOpen =  false;
 }

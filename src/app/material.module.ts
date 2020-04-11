@@ -10,7 +10,8 @@ import {
     MatToolbarModule,
     MatListModule,
     MatTabsModule,
-    MatCardModule
+    MatCardModule,
+    MatSelectModule
     } from '@angular/material';
 
 
@@ -49,7 +50,8 @@ export const MY_FORMATS = {
         MatToolbarModule,
         MatListModule,
         MatTabsModule,
-        MatCardModule
+        MatCardModule,
+        MatSelectModule
     ],
     exports: [
         MatButtonModule,
@@ -63,7 +65,8 @@ export const MY_FORMATS = {
         MatToolbarModule,
         MatListModule,
         MatTabsModule,
-        MatCardModule
+        MatCardModule,
+        MatSelectModule
     ],
 
     providers: [

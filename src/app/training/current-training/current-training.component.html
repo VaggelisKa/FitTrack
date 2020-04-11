@@ -3,10 +3,14 @@
     fxLayout="column"
     fxLayoutAlign="center center"
     fxLayoutGap="50px"
-    *ngIf="progress<=120"
+    *ngIf="!stopExercise"
 >
     <mat-progress-spinner mode="determinate" [value]="progress"></mat-progress-spinner>
     <h1> Progress - {{progress}}%</h1>
     <p>Dont give up! When it burns it grows.</p>
-    <button mat-raised-button color="warn">Stop</button>
+    <button 
+        mat-raised-button 
+        color="warn"
+        (click)="onStop()"
+    >Stop</button>
 </section>

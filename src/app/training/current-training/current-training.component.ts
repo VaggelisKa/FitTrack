@@ -22,6 +22,10 @@ export class CurrentTrainingComponent implements OnInit {
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
+    this.startOrResumeTimer();
+  }
+
+  startOrResumeTimer() {
     this.timer = setInterval(() => {
       this.progress = this.progress + (100 / this.exerciseTimeSecs);
       this.progress = Math.round(this.progress);
@@ -43,6 +47,9 @@ export class CurrentTrainingComponent implements OnInit {
       this.stopExercise = result;
       if (result) {
         this.exitedTraining.emit();
+      }
+      else {
+        this.startOrResumeTimer();
       }
     });
   }

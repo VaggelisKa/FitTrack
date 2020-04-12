@@ -5,15 +5,10 @@
             <mat-form-field>
                 <mat-label>Select exercise</mat-label>
                 <mat-select>
-                  <mat-option value="crunches">
-                    crunches
-                  </mat-option>
-                  <mat-option value="cardio">
-                    cardio
-                </mat-option>
-                <mat-option value="burpees">
-                    burpees
-                </mat-option>
+                    <mat-option
+                        *ngFor="let exercise of exercises"
+                        [value]="exercise.id"
+                    >{{exercise.name}}</mat-option>
                 </mat-select>
               </mat-form-field>
         </mat-card-content>

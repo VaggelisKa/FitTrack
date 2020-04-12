@@ -1,7 +1,7 @@
 import { Exercise } from './exercise.model';
 import { Injectable } from '@angular/core';
 
-@Injectable({providedIn: 'root'})
+@Injectable()
 export class TrainingService {
     private availableExercises: Exercise[] = [
         { id: 'crunches', name: 'Crunches', duration: 30, calories: 8 },

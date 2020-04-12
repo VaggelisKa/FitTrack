@@ -1,0 +1,35 @@
+.BackImage {
+    /* background-image: url("C:\Users\Gunshot\Desktop\Black.jpeg"); */
+    background-image: url("C:\Users\Gunshot\Desktop\Gym.jfif");
+  
+    /* Full height */
+    height: 100%;
+    width: 100%;
+    position: fixed;
+
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+
+.login-form {
+    padding-top: 30px;
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0, 0.6); 
+    opacity: 1;
+    height: 100%;
+    width: 100%;
+    color: lightgrey; 
+}
+
+mat-form-field {
+    width: 300px;
+}
+
+.checkbox {
+    font-size: 12px;
+}

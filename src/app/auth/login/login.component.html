@@ -1,1 +1,38 @@
-<p>login works!</p>
+<div class="BackImage">
+    <section class="login-form">
+        <form 
+        fxLayout="column"
+        fxLayoutAlign="center center"
+        fxLayoutGap="10px"
+        #loginForm="ngForm"
+        (ngSubmit)="onSubmit(loginForm)">
+                <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input  
+                    matInput 
+                    type FloatLabelType = 'always' 
+                    ngModel
+                    name="email"
+                    email
+                >
+                </mat-form-field>
+        
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input  
+                        matInput 
+                        type FloatLabelType = 'always'
+                        ngModel
+                        name="password"
+                        type="password"
+                    >
+                </mat-form-field>
+
+                <button 
+                    type="submit" 
+                    mat-raised-button color="primary"
+                    class="loginBtn"
+                >Login</button>
+        </form>
+    </section>
+</div>

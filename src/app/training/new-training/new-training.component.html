@@ -1,24 +1,26 @@
 <section class="new-training" fxLayout="row" fxLayoutAlign="center">
     <mat-card fxFlex.xs="width:100%" fxFlex="400px">
-        <mat-card-title fxLayoutAlign="center">Add a new exercise!</mat-card-title>
-        <mat-card-content fxLayoutAlign="center">
-            <mat-form-field>
-                <mat-label>Select exercise</mat-label>
-                <mat-select>
-                    <mat-option
-                        *ngFor="let exercise of exercises"
-                        [value]="exercise.id"
-                        
-                    >{{exercise.name}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-        </mat-card-content>
-        <mat-card-actions fxLayoutAlign="center">
-            <button 
-                type="submit" 
-                mat-raised-button 
-                color="primary"
-                (click)="onExerciseStart('exercise.id')">Start exercise</button>
-        </mat-card-actions>
+        <form (ngSubmit)="onExerciseStart(form)" #form="ngForm">
+            <mat-card-title fxLayoutAlign="center">Add a new exercise!</mat-card-title>
+            <mat-card-content fxLayoutAlign="center">
+                <mat-form-field>
+                    <mat-label>Select exercise</mat-label>
+                    <mat-select ngModel name="exercise" required>
+                        <mat-option
+                            *ngFor="let exercise of exercises"
+                            [value]="exercise.id"                
+                        >{{exercise.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-card-content>
+            <mat-card-actions fxLayoutAlign="center">
+                <button 
+                    type="submit" 
+                    mat-raised-button 
+                    color="primary"
+                    [disabled] = "form.invalid"
+                >Start exercise</button>
+            </mat-card-actions>
+        </form>
     </mat-card>    
 </section>

@@ -14,7 +14,9 @@ import {
     MatSelectModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule,
+    MatSortModule
     } from '@angular/material';
 
 
@@ -57,7 +59,9 @@ export const MY_FORMATS = {
         MatSelectModule,
         MatProgressBarModule,
         MatProgressSpinnerModule,
-        MatDialogModule
+        MatDialogModule,
+        MatTableModule,
+        MatSortModule,
     ],
     exports: [
         MatButtonModule,
@@ -75,7 +79,9 @@ export const MY_FORMATS = {
         MatSelectModule,
         MatProgressBarModule,
         MatProgressSpinnerModule,
-        MatDialogModule
+        MatDialogModule,
+        MatTableModule,
+        MatSortModule
     ],
 
     providers: [

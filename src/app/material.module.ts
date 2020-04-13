@@ -16,7 +16,8 @@ import {
     MatProgressSpinnerModule,
     MatDialogModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatPaginatorModule
     } from '@angular/material';
 
 
@@ -62,6 +63,7 @@ export const MY_FORMATS = {
         MatDialogModule,
         MatTableModule,
         MatSortModule,
+        MatPaginatorModule
     ],
     exports: [
         MatButtonModule,
@@ -81,7 +83,8 @@ export const MY_FORMATS = {
         MatProgressSpinnerModule,
         MatDialogModule,
         MatTableModule,
-        MatSortModule
+        MatSortModule,
+        MatPaginatorModule
     ],
 
     providers: [

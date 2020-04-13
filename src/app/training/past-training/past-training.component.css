@@ -2,6 +2,11 @@ table {
     width: 100%;
   }
   
-  th.mat-sort-header-sorted {
+th.mat-sort-header-sorted {
     color: black;
   }
+
+::ng-deep .mat-header-cell .mat-sort-header-container  {
+    justify-content: center;
+}
+

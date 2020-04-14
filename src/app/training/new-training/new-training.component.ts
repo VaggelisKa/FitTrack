@@ -13,7 +13,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./new-training.component.css']
 })
 export class NewTrainingComponent implements OnInit {
-  exercises: Observable<any>;
+  exercises: Observable<Exercise[]>;
 
   constructor(private trainingService: TrainingService,
               private db: AngularFirestore) {}

@@ -35,6 +35,10 @@ export class TrainingService {
         });
     }
 
+    private exercisesToDatabase(exercise: Exercise) {
+        this.db.collection('finishedExercises').add(exercise);
+    }
+
     startExercise(selectedId: string) {
         this.runningExercise = this.availableExercises.find(ex =>
             ex.id === selectedId);
@@ -42,7 +46,7 @@ export class TrainingService {
     }
 
     cancelExercise(progress: number) {
-        this.exerciseSummary.push({
+        this.exercisesToDatabase({
             ...this.runningExercise,
             duration: this.runningExercise.duration * (progress / 100),
             calories: this.runningExercise.calories * (progress / 100),
@@ -54,7 +58,7 @@ export class TrainingService {
     }
 
     completeExercise() {
-        this.exerciseSummary.push({
+        this.exercisesToDatabase({
             ...this.runningExercise,
             date: new Date(),
             state: 'completed'

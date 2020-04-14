@@ -24,7 +24,7 @@ export class TrainingService {
             return docData.map(doc => {
                 const data: any = doc.payload.doc.data();
                 return {
-                    id: doc.payload.doc.data(),
+                    id: doc.payload.doc.id,
                     ...data
                 };
             });
@@ -40,6 +40,7 @@ export class TrainingService {
     }
 
     startExercise(selectedId: string) {
+        this.db.doc('/availableExercises/' + selectedId).update({lastSelected: new Date()});
         this.runningExercise = this.availableExercises.find(ex =>
             ex.id === selectedId);
         this.exerciseChanged.next({...this.runningExercise});

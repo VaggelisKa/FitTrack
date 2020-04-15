@@ -1,9 +1,11 @@
 import { Subject } from 'rxjs/Subject';
 import { map } from 'rxjs/operators';
-
-import { Exercise } from './exercise.model';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
+
+
+import { Exercise } from './exercise.model';
+import { Subscription } from 'rxjs';
 
 @Injectable()
 export class TrainingService {
@@ -15,9 +17,10 @@ export class TrainingService {
 
     private availableExercises: Exercise[] = [];
     private runningExercise: Exercise;
+    private fbSubs: Subscription[] = [];
 
     fetchAvailableExercises() {
-        this.db
+        this.fbSubs.push(this.db
         .collection('availableExercises')
         .snapshotChanges()
         .pipe(map(docData => {
@@ -32,7 +35,8 @@ export class TrainingService {
         .subscribe((exercises: Exercise[]) => {
             this.availableExercises = exercises;
             this.exercisesChanged.next([...this.availableExercises]);
-        });
+        })
+        );
     }
 
     private exercisesToDatabase(exercise: Exercise) {
@@ -73,11 +77,19 @@ export class TrainingService {
     }
 
     fetchCompletedOrCanceledExercises() {
-        this.db
+        this.fbSubs.push(this.db
         .collection('finishedExercises')
         .valueChanges()
         .subscribe((finishedExercises: Exercise[]) => {
             this.finishedExercisesChanged.next(finishedExercises);
+        })
+        );
+    }
+
+    // Because we need to terminate token given to us by angularfire
+    cancelSubscriptions() {
+        this.fbSubs.forEach(sub => {
+            sub.unsubscribe();
         });
     }
 }

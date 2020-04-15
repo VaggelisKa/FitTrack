@@ -36,6 +36,6 @@ mat-form-field {
 
 mat-spinner {
     position: fixed;
-    top: 40%;
-    left: 50%;
+    top: 30%;
+    left: 45%;
 }

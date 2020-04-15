@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm, FormControl } from '@angular/forms';
 import moment from 'moment';
 import { AuthService } from '../auth.service';
+import { GlobalUIService } from 'src/app/shared/globalUI.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -9,13 +11,20 @@ import { AuthService } from '../auth.service';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit, OnDestroy {
   maxDate;
+  isLoading = false;
+  authStateSub: Subscription;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,
+              private globalUIService: GlobalUIService) {}
    date = new FormControl(moment());
 
   ngOnInit() {
+    this.authStateSub = this.globalUIService.isLoading.subscribe(result => {
+      this.isLoading = result;
+    });
+
     this.maxDate = new Date();
     this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
   }
@@ -25,6 +34,10 @@ export class SignupComponent implements OnInit {
       email: form.value.email,
       password: form.value.password
     });
+  }
+
+  ngOnDestroy() {
+    this.authStateSub.unsubscribe();
   }
 
 }

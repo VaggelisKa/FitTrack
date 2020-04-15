@@ -6,6 +6,7 @@ import {MatSnackBar} from '@angular/material';
 
 import { AuthData } from './auth-data.model';
 import { TrainingService } from '../training/training.service';
+import { GlobalUIService } from '../shared/globalUI.service';
 
 
 @Injectable()
@@ -16,7 +17,8 @@ export class AuthService {
     constructor(private router: Router,
                 private afAuth: AngularFireAuth,
                 private trainingService: TrainingService,
-                private snackBar: MatSnackBar) {}
+                private snackBar: MatSnackBar,
+                private globalUIService: GlobalUIService) {}
 
     authStateListener() {
         this.afAuth.authState.subscribe(user => {
@@ -35,28 +37,34 @@ export class AuthService {
     }
 
     registerUser(authData: AuthData) {
+        this.globalUIService.isLoading.next(true);
         this.afAuth.auth.createUserWithEmailAndPassword(
             authData.email,
             authData.password
             ).then(result => {
                 console.log(result);
+                this.globalUIService.isLoading.next(false);
             }).catch(error => {
                 this.snackBar.open(error.message, 'Close', {
                     duration: 4000
                 });
+                this.globalUIService.isLoading.next(false);
             });
     }
 
     login(authData: AuthData) {
+        this.globalUIService.isLoading.next(true);
         this.afAuth.auth.signInWithEmailAndPassword(
             authData.email,
             authData.password
         ).then(result => {
             console.log(result);
+            this.globalUIService.isLoading.next(false);
         }).catch(error => {
             this.snackBar.open(error.message, 'Close', {
                 duration: 4000
             });
+            this.globalUIService.isLoading.next(false);
         });
     }
 

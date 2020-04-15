@@ -1,12 +1,12 @@
 <div class="BackImage">
     <section class="login-form">
-        <form 
+        <form
         fxLayout="column"
         fxLayoutAlign="center center"
         fxLayoutGap="10px"
         #loginForm="ngForm"
         (ngSubmit)="onSubmit(loginForm)">
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" *ngIf="!isLoading" >
                 <mat-label>Email</mat-label>
                 <input  
                     matInput 
@@ -17,7 +17,7 @@
                 >
                 </mat-form-field>
         
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" *ngIf="!isLoading" >
                     <mat-label>Password</mat-label>
                     <input  
                         matInput 
@@ -28,11 +28,14 @@
                     >
                 </mat-form-field>
 
-                <button 
+                <button
+                    *ngIf="!isLoading"  
                     type="submit" 
                     mat-raised-button color="primary"
                     class="loginBtn"
                 >Login</button>
+
+                <mat-spinner *ngIf="isLoading" diameter="120"></mat-spinner>
         </form>
     </section>
 </div>

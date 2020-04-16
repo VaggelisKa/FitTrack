@@ -6,6 +6,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 
 import { Exercise } from './exercise.model';
 import { Subscription } from 'rxjs';
+import { GlobalUIService } from '../shared/globalUI.service';
 
 @Injectable()
 export class TrainingService {
@@ -13,13 +14,15 @@ export class TrainingService {
     exercisesChanged = new Subject<Exercise[]>();
     finishedExercisesChanged = new Subject<Exercise[]>();
 
-    constructor(private db: AngularFirestore) {}
+    constructor(private db: AngularFirestore,
+                private globalUIService: GlobalUIService) {}
 
     private availableExercises: Exercise[] = [];
     private runningExercise: Exercise;
     private fbSubs: Subscription[] = [];
 
     fetchAvailableExercises() {
+        this.globalUIService.isLoading.next(true);
         this.fbSubs.push(this.db
         .collection('availableExercises')
         .snapshotChanges()
@@ -33,8 +36,13 @@ export class TrainingService {
             });
         }))
         .subscribe((exercises: Exercise[]) => {
+            this.globalUIService.isLoading.next(false);
             this.availableExercises = exercises;
             this.exercisesChanged.next([...this.availableExercises]);
+        }, error => {
+            this.globalUIService.getSnackbar('Fethcing Exercises fail', 'Close');
+            this.globalUIService.isLoading.next(false);
+            this.exercisesChanged.next(null);
         })
         );
     }

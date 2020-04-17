@@ -14,6 +14,7 @@ import * as fromRoot from '../../app.reducer';
 })
 export class SignupComponent implements OnInit {
   maxDate;
+  doPasswordsMatch = false;
   isLoading$: Observable<boolean>;
 
   constructor(private authService: AuthService,
@@ -25,6 +26,12 @@ export class SignupComponent implements OnInit {
 
     this.maxDate = new Date();
     this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
+  }
+
+  checkPasswordsMatch(form: NgForm) {
+    if (form.value.password === form.value.confirmPassword) {
+      this.doPasswordsMatch = true;
+    }
   }
 
   onSubmit(form: NgForm) {

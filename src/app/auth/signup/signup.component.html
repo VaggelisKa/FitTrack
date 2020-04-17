@@ -20,7 +20,7 @@
                 <mat-error *ngIf="!emailInput.hasError('required')">Email is invalid</mat-error>
                 <mat-error *ngIf="emailInput.hasError('required')">Field must not be empty</mat-error>
                 </mat-form-field>
-        
+   
                 <mat-form-field appearance="outline" *ngIf="!(isLoading$ | async)">
                     <mat-label>Password</mat-label>
                     <input  
@@ -43,12 +43,15 @@
                         matInput 
                         type FloatLabelType = 'always'
                         ngModel
+                        appConfirmEqualValidator="password"
+                        #confirmPassword="ngModel"
                         name="confirmPassword"
                         type="password"
                         required
                     >
+                    <mat-error *ngIf="confirmPassword.touched && confirmPassword.errors?.notEqual">Passwords dont match!</mat-error>
                 </mat-form-field>
-        
+  
                 <mat-form-field *ngIf="!(isLoading$ | async)">
                     <mat-label>Your Birthday</mat-label>
                     <input 

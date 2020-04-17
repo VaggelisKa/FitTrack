@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { GlobalUIService } from 'src/app/shared/globalUI.service';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import * as fromRoot from '../../app.reducer';
 
 @Component({
@@ -19,7 +17,7 @@ export class LoginComponent implements OnInit {
               private store: Store<fromRoot.State>) {}
 
   ngOnInit() {
-    this.isLoading$ = this.store.select(fromRoot.getIsLoading);
+    this.isLoading$ = this.store.pipe(select(fromRoot.getIsLoading));
   }
 
   onSubmit(form: NgForm) {

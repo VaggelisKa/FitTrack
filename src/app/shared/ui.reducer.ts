@@ -15,13 +15,13 @@ export function uiReducer(state = initialState, action: UiActions.UIActions) {
         case UiActions.START_LOADING:
             return{
                 ...state,
-                return: true
+                isLoading: true
             };
 
         case UiActions.STOP_LOADING:
             return{
                 ...state,
-                return: false
+               isLoading: false
             };
 
         default:

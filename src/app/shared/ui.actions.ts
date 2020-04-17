@@ -5,14 +5,10 @@ export const STOP_LOADING = '[UI] Stop Loading';
 
 export class StartLoading implements Action {
     readonly type =  START_LOADING;
-
-    constructor(public payload: boolean) {}
 }
 
 export class StopLoading implements Action {
     readonly type =  STOP_LOADING;
-
-    constructor(public payload: boolean) {}
 }
 
 export type UIActions =

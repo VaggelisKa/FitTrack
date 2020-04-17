@@ -2,13 +2,14 @@ import { Subject } from 'rxjs/Subject';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
-import {MatSnackBar} from '@angular/material';
 
 import { AuthData } from './auth-data.model';
 import { TrainingService } from '../training/training.service';
 import { GlobalUIService } from '../shared/globalUI.service';
 import { Store } from '@ngrx/store';
-import * as fromApp from '../app.reducer';
+import * as fromRoot from '../app.reducer';
+import * as UI from '../shared/ui.actions';
+
 
 
 @Injectable()
@@ -20,7 +21,7 @@ export class AuthService {
                 private afAuth: AngularFireAuth,
                 private trainingService: TrainingService,
                 private globalUIService: GlobalUIService,
-                private store: Store<{ui: fromApp.State}>) {}
+                private store: Store<fromRoot.State>) {}
 
     authStateListener() {
         this.afAuth.authState.subscribe(user => {
@@ -39,30 +40,30 @@ export class AuthService {
     }
 
     registerUser(authData: AuthData) {
-        this.store.dispatch({type: 'START_LOADING'});
+        this.store.dispatch(new UI.StartLoading());
         this.afAuth.auth.createUserWithEmailAndPassword(
             authData.email,
             authData.password
             ).then(result => {
                 console.log(result);
-                this.store.dispatch({type: 'STOP_LOADING'});
+                this.store.dispatch(new UI.StopLoading());
             }).catch(error => {
                 this.globalUIService.getSnackbar(error, 'Close');
-                this.store.dispatch({type: 'STOP_LOADING'});
+                this.store.dispatch(new UI.StopLoading());
             });
     }
 
     login(authData: AuthData) {
-        this.store.dispatch({type: 'START_LOADING'});
+        this.store.dispatch(new UI.StartLoading());
         this.afAuth.auth.signInWithEmailAndPassword(
             authData.email,
             authData.password
         ).then(result => {
             console.log(result);
-            this.store.dispatch({type: 'STOP_LOADING'});
+            this.store.dispatch(new UI.StopLoading());
         }).catch(error => {
             this.globalUIService.getSnackbar(error, 'Close');
-            this.store.dispatch({type: 'STOP_LOADING'});
+            this.store.dispatch(new UI.StopLoading());
         });
     }
 

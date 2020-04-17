@@ -6,7 +6,7 @@
         fxLayoutGap="10px"
         #loginForm="ngForm"
         (ngSubmit)="onSubmit(loginForm)">
-                <mat-form-field appearance="outline" *ngIf="!isLoading" >
+                <mat-form-field appearance="outline" *ngIf="!(isLoading$ | async)" >
                 <mat-label>Email</mat-label>
                 <input  
                     matInput 
@@ -17,7 +17,7 @@
                 >
                 </mat-form-field>
         
-                <mat-form-field appearance="outline" *ngIf="!isLoading" >
+                <mat-form-field appearance="outline" *ngIf="!(isLoading$ | async)" >
                     <mat-label>Password</mat-label>
                     <input  
                         matInput 

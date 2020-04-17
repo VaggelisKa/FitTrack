@@ -7,6 +7,8 @@ import {MatSnackBar} from '@angular/material';
 import { AuthData } from './auth-data.model';
 import { TrainingService } from '../training/training.service';
 import { GlobalUIService } from '../shared/globalUI.service';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../app.reducer';
 
 
 @Injectable()
@@ -17,7 +19,8 @@ export class AuthService {
     constructor(private router: Router,
                 private afAuth: AngularFireAuth,
                 private trainingService: TrainingService,
-                private globalUIService: GlobalUIService) {}
+                private globalUIService: GlobalUIService,
+                private store: Store<{ui: fromApp.State}>) {}
 
     authStateListener() {
         this.afAuth.authState.subscribe(user => {
@@ -36,30 +39,30 @@ export class AuthService {
     }
 
     registerUser(authData: AuthData) {
-        this.globalUIService.isLoading.next(true);
+        this.store.dispatch({type: 'START_LOADING'});
         this.afAuth.auth.createUserWithEmailAndPassword(
             authData.email,
             authData.password
             ).then(result => {
                 console.log(result);
-                this.globalUIService.isLoading.next(false);
+                this.store.dispatch({type: 'STOP_LOADING'});
             }).catch(error => {
                 this.globalUIService.getSnackbar(error, 'Close');
-                this.globalUIService.isLoading.next(false);
+                this.store.dispatch({type: 'STOP_LOADING'});
             });
     }
 
     login(authData: AuthData) {
-        this.globalUIService.isLoading.next(true);
+        this.store.dispatch({type: 'START_LOADING'});
         this.afAuth.auth.signInWithEmailAndPassword(
             authData.email,
             authData.password
         ).then(result => {
             console.log(result);
-            this.globalUIService.isLoading.next(false);
+            this.store.dispatch({type: 'STOP_LOADING'});
         }).catch(error => {
             this.globalUIService.getSnackbar(error, 'Close');
-            this.globalUIService.isLoading.next(false);
+            this.store.dispatch({type: 'STOP_LOADING'});
         });
     }
 

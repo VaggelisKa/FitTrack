@@ -16,6 +16,7 @@ export class TrainingService {
     exerciseChanged = new Subject<Exercise>();
     exercisesChanged = new Subject<Exercise[]>();
     finishedExercisesChanged = new Subject<Exercise[]>();
+    canceledExercisesChanged = new Subject<Exercise[]>();
 
     constructor(private db: AngularFirestore,
                 private globalUIService: GlobalUIService,
@@ -52,7 +53,12 @@ export class TrainingService {
     }
 
     private exercisesToDatabase(exercise: Exercise) {
-        this.db.collection('finishedExercises').add(exercise);
+        if (exercise.state === 'completed') {
+            this.db.collection('finishedExercises').add(exercise);
+        }
+        else {
+            this.db.collection('canceledExercises').add(exercise);
+        }
     }
 
     startExercise(selectedId: string) {
@@ -88,7 +94,7 @@ export class TrainingService {
         return {...this.runningExercise};
     }
 
-    fetchCompletedOrCanceledExercises() {
+    fetchCompletedExercises() {
         this.fbSubs.push(this.db
         .collection('finishedExercises')
         .valueChanges()
@@ -96,6 +102,16 @@ export class TrainingService {
             this.finishedExercisesChanged.next(finishedExercises);
         })
         );
+    }
+
+    fetchCanceledExercises() {
+        this.fbSubs.push(this.db
+            .collection('canceledExercises')
+            .valueChanges()
+            .subscribe((canceledExercises: Exercise[]) => {
+                this.canceledExercisesChanged.next(canceledExercises);
+            })
+            );
     }
 
     // Because we need to terminate token given to us by angularfire

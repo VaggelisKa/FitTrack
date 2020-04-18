@@ -1,6 +1,4 @@
-import { Action } from '@ngrx/store';
 import * as UiActions from './ui.actions';
-import { from } from 'rxjs';
 
 export interface State {
     isLoading: boolean;

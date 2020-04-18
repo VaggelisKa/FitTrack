@@ -5,13 +5,13 @@ import { AuthRoutingModule } from './auth-routing.module';
 
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
-import { ConfirmEqualValidatorDirective } from './signup/confirm-password.directive';
+import { CheckPasswordDirective } from './signup/confirm-password.directive';
 
 @NgModule({
     declarations: [
         SignupComponent,
         LoginComponent,
-        ConfirmEqualValidatorDirective
+        CheckPasswordDirective
     ],
 
     imports: [

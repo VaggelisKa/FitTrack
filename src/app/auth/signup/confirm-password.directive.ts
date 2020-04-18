@@ -1,23 +1,36 @@
-import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
-import { Directive, Input } from '@angular/core';
+import { Directive } from '@angular/core';
+import { AbstractControl, FormGroup, NG_VALIDATORS, ValidationErrors, Validator, ValidatorFn } from '@angular/forms';
+
+function validatePassword(): ValidatorFn {
+  return (control: AbstractControl) => {
+    let isValid = false;
+    if (control && control instanceof FormGroup) {
+      const group = control as FormGroup;
+      if (group.controls.password && group.controls.confirmPassword) {
+        isValid = group.controls.password.value === group.controls.confirmPassword.value;
+      }
+    }
+    if (isValid) {
+      return null;
+    } else {
+      return { passwordCheck: 'failed' };
+    }
+  };
+}
 
 @Directive({
-    selector: '[appConfirmEqualValidator]',
-    providers: [{
-        provide: NG_VALIDATORS,
-        useExisting: ConfirmEqualValidatorDirective,
-        multi: true
-    }]
+  selector: '[appCheckPassword]',
+  providers: [{ provide: NG_VALIDATORS, useExisting: CheckPasswordDirective, multi: true }]
 })
-export class ConfirmEqualValidatorDirective implements Validator {
-    @Input() appConfirmEqualValidator: string;
-    validate(control: AbstractControl): { [key: string]: any } | null {
-        const controlToCompare = control.parent.get(this.appConfirmEqualValidator);
-        if (controlToCompare && controlToCompare.value !== control.value) {
-            return { notEqual : true };
-        }
+export class CheckPasswordDirective implements Validator {
+  private valFn: any;
 
-        return null;
-    }
+  constructor() {
+    this.valFn = validatePassword();
+  }
+
+  validate(c: AbstractControl): ValidationErrors | null {
+    return this.valFn(c);
+  }
 
 }

@@ -20,38 +20,52 @@
                 <mat-error *ngIf="!emailInput.hasError('required')">Email is invalid</mat-error>
                 <mat-error *ngIf="emailInput.hasError('required')">Field must not be empty</mat-error>
                 </mat-form-field>
-   
-                <mat-form-field appearance="outline" *ngIf="!(isLoading$ | async)">
-                    <mat-label>Password</mat-label>
-                    <input  
-                        matInput 
-                        type FloatLabelType = 'always'
-                        ngModel
-                        name="password"
-                        type="password"
-                        minlength="8"
-                        required
-                        #pwInput="ngModel"
-                    >
-                    <mat-hint>Minimum length 8</mat-hint>
-                    <mat-hint align="end">{{ pwInput.value?.length }} /8</mat-hint>
-                </mat-form-field>
-        
-                <mat-form-field appearance="outline" *ngIf="!(isLoading$ | async)">
-                    <mat-label>Confirm Password</mat-label>
-                    <input  
-                        matInput 
-                        type FloatLabelType = 'always'
-                        ngModel
-                        appConfirmEqualValidator="password"
-                        #confirmPassword="ngModel"
-                        name="confirmPassword"
-                        type="password"
-                        required
-                    >
-                    <mat-error *ngIf="confirmPassword.touched && confirmPassword.errors?.notEqual">Passwords dont match!</mat-error>
-                </mat-form-field>
-  
+                
+                <div 
+                    ngModelGroup="passwords" 
+                    #passwords="ngModelGroup" 
+                    appCheckPassword
+                    fxLayout="column"
+                    fxLayoutAlign="center center"
+                    fxLayoutGap="13px"
+                >
+                    <mat-form-field appearance="outline" *ngIf="!(isLoading$ | async)">
+                        <mat-label>Password</mat-label>
+                        <input  
+                            matInput 
+                            type FloatLabelType = 'always'
+                            ngModel
+                            name="password"
+                            type="password"
+                            minlength="8"
+                            required
+                            #password="ngModel"
+                        >
+                        <mat-hint>Minimum length 8</mat-hint>
+                        <mat-hint align="end">{{ password.value?.length }} /8</mat-hint>
+                    </mat-form-field>
+            
+                    <mat-form-field appearance="outline" *ngIf="!(isLoading$ | async)">
+                        <mat-label>Confirm Password</mat-label>
+                        <input  
+                            matInput 
+                            type FloatLabelType = 'always'
+                            ngModel
+                            #confirmPassword="ngModel"
+                            name="confirmPassword"
+                            type="password"
+                            required
+                        >
+                        <div 
+                            *ngIf="passwords.errors?.passwordCheck && (confirmPassword.dirty || confirmPassword.touched) && confirmPassword.value.length>0"
+                            fxLayout="column"
+                            fxLayoutAlign="center center"
+                            fxLayoutGap="13px"
+                        >
+                            <mat-error>Passwords dont match!</mat-error>
+                        </div>
+                    </mat-form-field>
+                </div>
                 <mat-form-field *ngIf="!(isLoading$ | async)">
                     <mat-label>Your Birthday</mat-label>
                     <input 

@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 
 import { TrainingService } from '../training.service';
 import { Exercise } from '../exercise.model';
-import { Subscription, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import * as fromRoot from '../../app.reducer';
 import * as fromTraining from '../store/training.reducer';
 import * as TrainingActions from '../store/training.reducer';

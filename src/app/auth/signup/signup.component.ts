@@ -18,6 +18,7 @@ export class SignupComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private store: Store<fromRoot.State>) {}
+
    date = new FormControl(moment());
 
   ngOnInit() {

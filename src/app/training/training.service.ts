@@ -1,8 +1,6 @@
-import { Subject } from 'rxjs/Subject';
 import { map, take } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
-
 
 import { Exercise } from './exercise.model';
 import { Subscription } from 'rxjs';
@@ -14,11 +12,6 @@ import { Store, select } from '@ngrx/store';
 
 @Injectable()
 export class TrainingService {
-    exerciseChanged = new Subject<Exercise>();
-    exercisesChanged = new Subject<Exercise[]>();
-    finishedExercisesChanged = new Subject<Exercise[]>();
-    canceledExercisesChanged = new Subject<Exercise[]>();
-
     constructor(private db: AngularFirestore,
                 private globalUIService: GlobalUIService,
                 private store: Store<fromTraining.State>) {}

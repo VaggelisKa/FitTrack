@@ -9,8 +9,7 @@ import * as fromRoot from '.././app.reducer';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-    constructor(private router: Router,
-                private store: Store<fromRoot.State>) {}
+    constructor(private store: Store<fromRoot.State>) {}
 
     canActivate(
         route: ActivatedRouteSnapshot,

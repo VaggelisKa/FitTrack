@@ -16,7 +16,7 @@ export class CanceledTrainingsComponent implements OnInit, AfterViewInit {
   constructor(private trainingService: TrainingService,
               private store: Store<fromTraining.State>) {}
 
-  displayedColumns: string[] = [ 'name', 'date', 'calories', 'duration', 'state'];
+  displayedColumns: string[] = [ 'name', 'date', 'calories', 'duration', 'state', 'delete'];
   dataSource = new MatTableDataSource<Exercise>();
 
   @ViewChild(MatSort, {static: false}) sort: MatSort;

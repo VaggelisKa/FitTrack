@@ -16,6 +16,8 @@ export class TrainingService {
                 private globalUIService: GlobalUIService,
                 private store: Store<fromTraining.State>) {}
 
+    canceledExerciseLength: number;
+
     private fbSubs: Subscription[] = [];
 
     fetchAvailableExercises() {
@@ -98,6 +100,7 @@ export class TrainingService {
             .valueChanges()
             .subscribe((canceledExercises: Exercise[]) => {
                 this.store.dispatch(new TrainingActions.SetCanceledTrainings(canceledExercises));
+                this.store.dispatch(new TrainingActions.SetCanceledTrainingsLength(canceledExercises.length));
             })
             );
     }
@@ -107,5 +110,9 @@ export class TrainingService {
         this.fbSubs.forEach(sub => {
             sub.unsubscribe();
         });
+    }
+
+    getCanceledExerciseLength() {
+        return this.canceledExerciseLength;
     }
 }

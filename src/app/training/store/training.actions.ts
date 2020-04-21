@@ -6,6 +6,7 @@ export const SET_COMPLETED_TRAININGS = '[Training] Set Completed Trainings';
 export const SET_CANCELED_TRAININGS = '[Training] Set Canceled Trainings';
 export const START_TRAINING = '[Training] Start Training';
 export const STOP_TRAINING = '[Training] Stop Training';
+export const SET_CANCELED_TRAININGS_LENGTH = '[Training] Set Canceled Trainings Length';
 
 
 export class SetAvailableTrainings implements Action {
@@ -36,9 +37,16 @@ export class StopTraining implements Action {
     readonly type = STOP_TRAINING;
 }
 
+export class SetCanceledTrainingsLength implements Action {
+    readonly type = SET_CANCELED_TRAININGS_LENGTH;
+
+    constructor(public payload: number) {}
+}
+
 export type TrainingActions =
     | SetAvailableTrainings
     | SetCompletedTrainings
     | SetCanceledTrainings
     | StartTraining
-    | StopTraining;
+    | StopTraining
+    | SetCanceledTrainingsLength;

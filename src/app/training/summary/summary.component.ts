@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { GoogleChartComponent } from 'angular-google-charts';
-import { Observable } from 'rxjs';
-import { Exercise } from '../exercise.model';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
 import * as fromTraining from '../store/training.reducer';
+import { TrainingService } from '../training.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-summary',
@@ -12,30 +13,32 @@ import * as fromTraining from '../store/training.reducer';
   styleUrls: ['./summary.component.css']
 })
 export class SummaryComponent implements OnInit {
-canceledExercises$: Observable<Exercise[]>;
-completedExercises$: Observable<Exercise[]>;
-
-  myData = [
-    ['London', 8136000],
-    ['New York', 8538000],
-    ['Paris', 2244000],
-    ['Berlin', 3470000],
-    ['Kairo', 19500000],
-  ];
+completedExercisesLength = 5;
+chartData = [];
 
 
   options = {
     title: 'Exercise Summary',
     is3D: true,
-    width: 650,
-    height: 400,
+    width: 900,
+    height: 500,
+    backgroundColor: '#303030',
+    titleTextStyle: {color: 'white',
+                    bold: true}
   };
 
   @ViewChild('chart') chart: GoogleChartComponent;
 
-  constructor(private store: Store<fromTraining.State>) { }
+  constructor(private trainingService: TrainingService,
+              private store: Store<fromTraining.State>) { }
 
-  ngOnInit(): void {
+
+
+  ngOnInit() {
+    this.store.pipe(select(fromTraining.getCanceledExercisesLength)).subscribe(exerciselength => {
+      this.chartData = [
+        ['Canceled', exerciselength]
+      ];
+    });
   }
-
 }

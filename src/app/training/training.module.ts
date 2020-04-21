@@ -10,6 +10,8 @@ import { StopTrainingComponent } from './current-training/stop.training.componen
 import { TrainingRoutingModule } from './training-routing.module';
 import { CanceledTrainingsComponent } from './canceled-trainings/canceled-trainings.component';
 import { trainingReducer } from './store/training.reducer';
+import { SummaryComponent } from './summary/summary.component';
+import { GoogleChartsModule } from 'angular-google-charts';
 
 @NgModule({
     declarations: [
@@ -19,12 +21,14 @@ import { trainingReducer } from './store/training.reducer';
         PastTrainingComponent,
         StopTrainingComponent,
         CanceledTrainingsComponent,
+        SummaryComponent,
     ],
 
     imports: [
         SharedModule,
         TrainingRoutingModule,
-        StoreModule.forFeature('training', trainingReducer)
+        StoreModule.forFeature('training', trainingReducer),
+        GoogleChartsModule
     ],
 
     exports: [],

@@ -90,6 +90,7 @@ export class TrainingService {
         .valueChanges()
         .subscribe((finishedExercises: Exercise[]) => {
             this.store.dispatch(new TrainingActions.SetCompletedTrainings(finishedExercises));
+            this.store.dispatch(new TrainingActions.SetCompletedTrainingsLength(finishedExercises.length));
         })
         );
     }

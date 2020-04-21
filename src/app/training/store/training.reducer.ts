@@ -11,6 +11,7 @@ export interface TrainingState {
     canceledExercises: Exercise[];
     activeExercise: Exercise;
     canceledExercisesLength: number;
+    completedExercisesLength: number;
 }
 
 export interface State extends fromRoot.State {
@@ -22,7 +23,8 @@ export const initialState: TrainingState = {
     completedExercises: [],
     canceledExercises: [],
     activeExercise: null,
-    canceledExercisesLength: null
+    canceledExercisesLength: 0,
+    completedExercisesLength: 0
 };
 
 export function trainingReducer(state = initialState, action: TrainingActions.TrainingActions) {
@@ -63,6 +65,12 @@ export function trainingReducer(state = initialState, action: TrainingActions.Tr
                 canceledExercisesLength: action.payload
             };
 
+        case TrainingActions.SET_COMPLETED_TRAININGS_LENGTH:
+            return {
+                ...state,
+                completedExercisesLength: action.payload
+            };
+
         default:
             return state;
     }
@@ -77,3 +85,4 @@ export const getCanceledExercises = createSelector(getTrainingState, (state: Tra
 export const getActiveTraining = createSelector(getTrainingState, (state: TrainingState) => state.activeExercise);
 export const getIsTraining = createSelector(getTrainingState, (state: TrainingState) => state.activeExercise != null);
 export const getCanceledExercisesLength = createSelector(getTrainingState, (state: TrainingState) => state.canceledExercisesLength);
+export const getCompletedExercisesLength = createSelector(getTrainingState, (state: TrainingState) => state.completedExercisesLength);

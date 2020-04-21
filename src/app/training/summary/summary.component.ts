@@ -13,9 +13,9 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./summary.component.css']
 })
 export class SummaryComponent implements OnInit {
-completedExercisesLength = 5;
-chartData = [];
-
+  completedExerciseLength: number;
+  canceledExercisesLength: number;
+  chartData = [];
 
   options = {
     title: 'Exercise Summary',
@@ -23,22 +23,32 @@ chartData = [];
     width: 900,
     height: 500,
     backgroundColor: '#303030',
-    titleTextStyle: {color: 'white',
-                    bold: true}
+    titleTextStyle: {color: 'white', fontSize: 19, bold: true},
+    legend: {textStyle: {color: '#fff', fontSize: 17}}
   };
 
   @ViewChild('chart') chart: GoogleChartComponent;
 
-  constructor(private trainingService: TrainingService,
-              private store: Store<fromTraining.State>) { }
+  constructor(private store: Store<fromTraining.State>) { }
 
 
 
   ngOnInit() {
-    this.store.pipe(select(fromTraining.getCanceledExercisesLength)).subscribe(exerciselength => {
-      this.chartData = [
-        ['Canceled', exerciselength]
-      ];
+    this.store.pipe(select(fromTraining.getCanceledExercisesLength)).subscribe(exerciseLength => {
+      this.canceledExercisesLength = exerciseLength;
+      this.setChart();
     });
+
+    this.store.pipe(select(fromTraining.getCompletedExercisesLength)).subscribe(completedExerciseLength => {
+      this.completedExerciseLength = completedExerciseLength;
+      this.setChart();
+    });
+  }
+
+  private setChart() {
+    this.chartData = [
+      ['Completed', this.completedExerciseLength],
+      ['Canceled', this.canceledExercisesLength]
+    ];
   }
 }

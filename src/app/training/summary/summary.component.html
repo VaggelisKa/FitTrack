@@ -1,9 +1,8 @@
-<div class="chart" fxLayoutAlign="center center" color="primary">
+<section class="chart" fxLayoutAlign="center center" fxFlex.xs="width:100px">
     <google-chart
         #chart
         [type]="'PieChart'"
         [(data)]="chartData"
         [options]="options"
-        chartArea.backgroundColor="'#303030'"
     ></google-chart>
-</div>
+</section>

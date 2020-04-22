@@ -3,7 +3,7 @@
         <form 
         fxLayout="column"
         fxLayoutAlign="center center"
-        fxLayoutGap="13px"
+        fxLayoutGap="17px"
         #signupForm="ngForm"
         (ngSubmit)="onSubmit(signupForm)">
                 <mat-form-field appearance="outline" *ngIf="!(isLoading$ | async)">
@@ -21,14 +21,7 @@
                 <mat-error *ngIf="emailInput.hasError('required')">Field must not be empty</mat-error>
                 </mat-form-field>
                 
-                <div 
-                    ngModelGroup="passwords" 
-                    #passwords="ngModelGroup" 
-                    appCheckPassword
-                    fxLayout="column"
-                    fxLayoutAlign="center center"
-                    fxLayoutGap="13px"
-                >
+
                     <mat-form-field appearance="outline" *ngIf="!(isLoading$ | async)">
                         <mat-label>Password</mat-label>
                         <input  
@@ -45,27 +38,7 @@
                         <mat-hint align="end">{{ password.value?.length }} /8</mat-hint>
                     </mat-form-field>
             
-                    <mat-form-field appearance="outline" *ngIf="!(isLoading$ | async)">
-                        <mat-label>Confirm Password</mat-label>
-                        <input  
-                            matInput 
-                            type FloatLabelType = 'always'
-                            ngModel
-                            #confirmPassword="ngModel"
-                            name="confirmPassword"
-                            type="password"
-                            required
-                        >
-                        <div 
-                            *ngIf="passwords.errors?.passwordCheck && (confirmPassword.dirty || confirmPassword.touched) && confirmPassword.value.length>0"
-                            fxLayout="column"
-                            fxLayoutAlign="center center"
-                            fxLayoutGap="13px"
-                        >
-                            <mat-error>Passwords dont match!</mat-error>
-                        </div>
-                    </mat-form-field>
-                </div>
+
                 <mat-form-field *ngIf="!(isLoading$ | async)">
                     <mat-label>Your Birthday</mat-label>
                     <input 
